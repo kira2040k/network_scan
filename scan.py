@@ -1,10 +1,18 @@
-import subprocess,re,socket,json,requests,argparse
+import subprocess,re,socket,json,requests,argparse,sys
 from funs import *
 parser = argparse.ArgumentParser()
-parser.add_argument('-f',"--full", help="full scan youe device don't forget to set your API key(will take more time ) ",
+parser.add_argument('-c',"--connections", help="scan all connections don't forget to set your API key(will take more time ) ",
+                    action="store_true")
+parser.add_argument('-p',"--programs", help="scan the programs Note: run as administrator",
+                    action="store_true")
+parser.add_argument('-f',"--fast", help="fast scanner",
                     action="store_true")
 args = parser.parse_args()
-if (args.full):
+if (args.connections):
     full()
-else:
+if(args.programs):
+    programs()
+if(args.fast):
     fast()
+else:
+    print(f'python {sys.argv[0]} -h')
