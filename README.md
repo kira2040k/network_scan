@@ -4,6 +4,7 @@ scan connections on your machine
 usage: scan.py [-h] [-c] [-p] [-f]
 
 optional arguments:
+  
   -h, --help         show this help message and exit
   
   -c, --connections  scan all connections don't forget to set your API key(will take more time )
