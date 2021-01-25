@@ -1,4 +1,5 @@
-    # network_scan
+    # network_scan 
+    Note: work only on windows 
     scan connections on your machine 
 
     usage: scan.py [-h] [-c] [-p] [-f]
