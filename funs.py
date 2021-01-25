@@ -1,4 +1,4 @@
-import subprocess,re,socket,json,requests,argparse
+import subprocess,re,socket,json,requests,argparse,time
 def fast():
     output = subprocess.check_output("netstat -n", shell=True)
     output = output.decode("utf-8")
@@ -17,7 +17,8 @@ def fast():
                     print('\033[1;31;40m',ips)
             
 def full():
-    API = 'your API here'
+
+    API = 'at_RPjMc0F8janKTVeWjnxIf2bks2LD4'
     output = subprocess.check_output("netstat -n", shell=True)
     output = output.decode("utf-8")
     output2 = re.findall('[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}:[0-9]{1,5}',output)
@@ -45,3 +46,33 @@ def full():
             except:
                 print('\n' +ips)
                 pass
+
+def programs():
+    print('please wait....')
+    output = subprocess.check_output("netstat -nb", shell=True)
+    time.sleep(8)
+    output = output.decode("utf-8")
+    PID = re.findall('.*exe',output)
+    
+    output2 = re.findall('[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}:[0-9]{1,5}|.*exe',output)
+    
+    for ips in output2:
+        #print(ips) 
+        ip = re.findall('[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}:[0-9]{1,5}',ips)
+        service = re.findall('.*exe',ips)
+        try:
+            if('.exe' in service[0]):
+                service = str(service[0]).replace('[','')
+                print('Program:',service)
+        except:
+            pass               
+
+        try:
+            if(re.search('443$',ips)):
+                print('\033[1;32;40m',ip[0])
+            else:
+                print('\033[1;31;40m',ip[0])
+                
+        except:
+            pass
+
