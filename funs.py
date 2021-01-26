@@ -18,7 +18,7 @@ def fast():
             
 def full():
 
-    API = 'at_RPjMc0F8janKTVeWjnxIf2bks2LD4'
+    API = 'your api here'
     output = subprocess.check_output("netstat -n", shell=True)
     output = output.decode("utf-8")
     output2 = re.findall('[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}:[0-9]{1,5}',output)
