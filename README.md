@@ -16,4 +16,6 @@
         
     e.g: python3 scan.py -p 
     python3 scan.py -f
-    
+    apis here:
+    https://www.virustotal.com/
+    http://ip-geolocation.whoisxmlapi.com/
