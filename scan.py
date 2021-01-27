@@ -1,5 +1,6 @@
 import subprocess,re,socket,json,requests,argparse,sys
 from funs import *
+banner()
 parser = argparse.ArgumentParser()
 parser.add_argument('-c',"--connections", help="scan all connections don't forget to set your API key(will take more time ) ",
                     action="store_true")
@@ -12,7 +13,7 @@ parser.add_argument('-ps',"--processing", help="scan processing on your device  
 parser.add_argument('-b',"--banner", help="show tool banner",
                     action="store_true")
 args = parser.parse_args()
-banner()
+
 
 if (args.connections):
     full()
