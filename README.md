@@ -13,6 +13,7 @@
     -p, --programs     scan the programs Note: run as administrator
   
     -f, --fast         fast scanner
+    -ps --processing   scan processing on your device  don't forget to set your API key
     -b, --banner       show banner     
     e.g: python3 scan.py -p 
     python3 scan.py -f
