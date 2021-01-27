@@ -112,3 +112,8 @@ def ps():
         except:
             pass        
 
+def banner():
+    file = open('banner.txt',encoding='utf-8')
+    colors = ['\033[1;31;40m','\033[1;34;40m']
+    
+    print(colors[random.randint(0,1)],file.read())
