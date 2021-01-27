@@ -13,7 +13,7 @@
     -p, --programs     scan the programs Note: run as administrator
   
     -f, --fast         fast scanner
-        
+    -b, --banner       show banner     
     e.g: python3 scan.py -p 
     python3 scan.py -f
     apis here:
