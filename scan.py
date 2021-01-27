@@ -9,7 +9,11 @@ parser.add_argument('-f',"--fast", help="fast scanner",
                     action="store_true")
 parser.add_argument('-ps',"--processing", help="scan processing on your device  don't forget to set your API key",
                     action="store_true")
+parser.add_argument('-b',"--banner", help="show tool banner",
+                    action="store_true")
 args = parser.parse_args()
+banner()
+
 if (args.connections):
     full()
     ps()
@@ -19,5 +23,4 @@ if(args.fast):
     fast()
 if(args.processing):
     ps()
-else:
-    print(f'python {sys.argv[0]} -h')
+
