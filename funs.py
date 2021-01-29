@@ -1,5 +1,6 @@
 import subprocess,re,socket,json,requests,argparse,time,random,virus_total_apis,os
 def fast():
+    print('scan running....')
     output = subprocess.check_output("netstat -n", shell=True)
     output = output.decode("utf-8")
     output2 = re.findall('[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}:[0-9]{1,5}',output)
@@ -17,7 +18,7 @@ def fast():
                     print('\033[1;31;40m',ips)
             
 def full():
-
+    print('scan running....')
     API = 'your ip-geolocation.whoisxmlapi.com api'
     output = subprocess.check_output("netstat -n", shell=True)
     output = output.decode("utf-8")
@@ -117,3 +118,34 @@ def banner():
     colors = ['\033[1;31;40m','\033[1;34;40m']
     
     print(colors[random.randint(0,1)],file.read())
+
+def files():
+    
+    
+    path = input('Enter Path:')
+    API = 'virus total api'
+    API = virus_total_apis.PublicApi(API)
+    files = []
+    for r, d, f in os.walk(path):
+        for file in f:
+            files.append(os.path.join(r, file))
+            
+    for f in files:
+
+        print(f'\033[1;32;40m {f}')
+        
+        output = subprocess.check_output(f"certutil -hashfile \"{f}\" MD5")
+        output = output.decode("utf-8")
+        hash1 = re.findall('[a-z|A-Z|0-9]{32}',output)
+        try:
+            response  = API.get_file_report(hash1[0])
+            response  = API.get_file_report(hash1[0])
+            response = json.dumps(response)
+            response = json.loads(response)
+            
+            time.sleep(26)
+            print(f"\033[1;31;40m {response['results']['positives']}/56")
+        except:
+            print('\033[1;32;40m clean file')
+            pass
+
