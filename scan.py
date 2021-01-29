@@ -12,6 +12,7 @@ parser.add_argument('-ps',"--processing", help="scan processing on your device  
                     action="store_true")
 parser.add_argument('-b',"--banner", help="show tool banner",
                     action="store_true")
+parser.add_argument('-d',"--directory", help="scan files",action="store_true")
 args = parser.parse_args()
 
 
@@ -24,4 +25,7 @@ if(args.fast):
     fast()
 if(args.processing):
     ps()
-
+if(args.directory):
+    files()
+if(len(sys.argv) == 1):
+    print(f'for help: python {sys.argv[0]} -h')
