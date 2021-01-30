@@ -120,10 +120,11 @@ def banner():
     print(colors[random.randint(0,1)],file.read())
 
 def files():
+
     
     
     path = input('Enter Path:')
-    API = 'virus total api'
+    API = '35a7358ed8946a8b0cd66024d16f36881e14ce38328c03ec3c03f5bf45f97d67'
     API = virus_total_apis.PublicApi(API)
     files = []
     for r, d, f in os.walk(path):
@@ -148,4 +149,31 @@ def files():
         except:
             print('\033[1;32;40m clean file')
             pass
+
+def Scanhide():
+    path  = input('Path to scan:')
+    try:
+        output = subprocess.check_output(f"dir /r {path}", shell=True)
+        output = output.decode("utf-8",errors='ignore')
+    except:
+        pass
+    find = re.findall('[0-9]{1,100}.*\$DATA',output)
+    for find in find:
+        try:
+            file_hide = re.findall(':.*:',find)
+            original_file = re.findall('[0-9]{1,100} .*:\$',find)
+            original_file = re.findall('\s[a-z,A-Z,0-9]{1,100}\.[a-z,A-Z,0-9]{1,100}',original_file[0])
+            file_hide = re.findall('[a-z,A-Z,0-9]{1,100}\.[a-z,A-Z,0-9]{1,100}',file_hide[0])
+            output = subprocess.check_output(f"more< {original_file[0]}:{file_hide[0]} > {file_hide[0]}", shell=True)
+            print(f'find {file_hide[0]} on {original_file[0]}  and extracted successfully ')
+        except:
+            exit('not Found hideen files')
+
+def hide():
+    file_hide = input('any file: ')
+    file_hidden = input('file you want to hide: ')
+    try:
+        output = subprocess.check_output(f"type {file_hidden} > {file_hide}:{file_hidden}", shell=True)
+    except:
+        print('error check your input..')
 
