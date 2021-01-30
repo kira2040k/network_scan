@@ -14,9 +14,15 @@
   
     -f, --fast         fast scanner
     -ps --processing   scan processing on your device  don't forget to set your API key
-    -b, --banner       show banner     
+    -b, --banner       show banner
+    -d, --directory    scan all files on one directory
+    -sf, --ScanFiles   ScanFiles
+    -hf, --hide        hide files
+     
+    -----------------------------
     e.g: python3 scan.py -p 
     python3 scan.py -f
+    
     apis here:
     https://www.virustotal.com/
     http://ip-geolocation.whoisxmlapi.com/
