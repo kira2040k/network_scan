@@ -13,27 +13,29 @@ parser.add_argument('-ps',"--processing", help="scan processing on your device  
 parser.add_argument('-b',"--banner", help="show tool banner",
                     action="store_true")
 parser.add_argument('-d',"--directory", help="scan files",action="store_true")
-parser.add_argument('-sf',"--ScanHide", help="scan for hidden files",
+parser.add_argument('-sf',"--ScanFiles", help="scan for hidden files",
                     action="store_true")
 parser.add_argument('-hf',"--hide", help="hide files",
                     action="store_true")
 args = parser.parse_args()
 
-
-if (args.connections):
-    full()
-    ps()
-if(args.programs):
-    programs()
-if(args.fast):
-    fast()
-if(args.processing):
-    ps()
-if(args.directory):
-    files()
-if(args.ScanHide):
-    Scanhide()
-if(args.hide):
-    hide()
-if(len(sys.argv) == 1):
-    print(f'for help: python {sys.argv[0]} -h')
+try:
+    if (args.connections):
+        full()
+        ps()
+    if(args.programs):
+        programs()
+    if(args.fast):
+        fast()
+    if(args.processing):
+        ps()
+    if(args.directory):
+        files()
+    if(args.ScanHide):
+        Scanhide()
+    if(args.hide):
+        hide()
+    if(len(sys.argv) == 1):
+        print(f'for help: python {sys.argv[0]} -h')
+except:
+    pass
