@@ -37,5 +37,7 @@ try:
         hide()
     if(len(sys.argv) == 1):
         print(f'for help: python {sys.argv[0]} -h')
+    
 except:
     pass
+colors.color.reset()
