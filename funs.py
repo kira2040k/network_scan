@@ -1,4 +1,4 @@
-import subprocess,re,socket,json,requests,argparse,time,random,virus_total_apis,os
+import subprocess,re,socket,json,requests,argparse,time,random,virus_total_apis,os,colors
 def fast():
     print('scan running....')
     output = subprocess.check_output("netstat -n", shell=True)
@@ -13,9 +13,9 @@ def fast():
             ip = re.findall('[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}',ips)
             ip = ip[0]
             if(re.search('443$',ips)):
-                print('\033[1;32;40m',ips)
+                print(ips)
             else:
-                    print('\033[1;31;40m',ips)
+                    print(ips)
             
 def full():
     print('scan running....')
@@ -32,9 +32,9 @@ def full():
             ip = re.findall('[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}',ips)
             ip = ip[0]
             if(re.search('443$',ips)):
-                print('\033[1;32;40m',ips,end='')
+                print(ips,end='')
             else:
-                    print('\033[1;31;40m',ips,end='')
+                    print(ips,end='')
             
             try:
                 r =  requests.get('https://ip-geolocation.whoisxmlapi.com/api/v1?apiKey={}&ipAddress={}'.format(API,ip))
@@ -51,32 +51,28 @@ def full():
 def programs():
     print('scan running....')
     output = subprocess.check_output("netstat -nb", shell=True)
-    time.sleep(8)
-    output = output.decode("utf-8")
-    PID = re.findall('.*exe',output)
-    
+    output = output.decode("utf-8")    
     output2 = re.findall('[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}:[0-9]{1,5}|.*exe',output)
     
     for ips in output2:
-        #print(ips) 
+        
         ip = re.findall('[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}:[0-9]{1,5}',ips)
         service = re.findall('.*exe',ips)
         try:
             if('.exe' in service[0]):
                 service = str(service[0]).replace('[','')
                 print('Program:',service)
+                print("-"*15)
         except:
             pass               
 
         try:
-            if(re.search('443$',ips)):
-                print('\033[1;32;40m',ip[0])
-            else:
-                print('\033[1;31;40m',ip[0])
+            print(ip[0])
+           
                 
         except:
             pass
-
+        
 def ps():
     print('scan running....')
     API = 'your virus total api'
@@ -101,7 +97,7 @@ def ps():
                 output = output.decode("utf-8")
                 
                 hash1 = re.findall('[a-z|A-Z|0-9]{32}',output)
-                print('\033[1;32;40m',new)
+                print(new)
                 print(hash1[0])
                 check.append(str(Progrmas_paths[0]))
                 response  = API.get_file_report(hash1[0])
@@ -115,9 +111,8 @@ def ps():
 
 def banner():
     file = open('banner.txt',encoding='utf-8')
-    colors = ['\033[1;31;40m','\033[1;34;40m']
     
-    print(colors[random.randint(0,1)],file.read())
+    print(file.read())
 
 def files():
 
@@ -133,7 +128,7 @@ def files():
             
     for f in files:
 
-        print(f'\033[1;32;40m {f}')
+        print(f' {f}')
         
         output = subprocess.check_output(f"certutil -hashfile \"{f}\" MD5")
         output = output.decode("utf-8")
@@ -145,9 +140,9 @@ def files():
             response = json.loads(response)
             
             time.sleep(26)
-            print(f"\033[1;31;40m {response['results']['positives']}/56")
+            print(f"{response['results']['positives']}/56")
         except:
-            print('\033[1;32;40m clean file')
+            print('clean file')
             pass
 
 def Scanhide():
